@@ -1,8 +1,10 @@
 #! /usr/bin/env python
 import zipfile
 import json
+import subprocess
 from sys import argv
 from os.path import splitext,isfile,getsize
+
 
 SERVER_FILE_BASE_PATH = 'https://github.com/myandroidgames/myandroidgames.github.io/tree'
 
@@ -56,7 +58,18 @@ else:
 
 apkPath=argv[1]
 
-genJson(apkPath)
+
+#genJson(apkPath)
+p = subprocess.Popen(['./aaptdump.sh',apkPath],stdout=subprocess.PIPE)
+output = p.communicate()
+strr =  output[0].split('\n')
+version = strr[0]
+name = strr[1]
+name = name.split(':')[1]
+name = name[1:len(name)-1]
+print version,"|",name
+
+
 exit()
 
 #dirPath, apkName = split(apkPath)
