@@ -12,3 +12,4 @@ github_username:  myandroidgames
 
 # Build settings
 markdown: kramdown
+comments: true
