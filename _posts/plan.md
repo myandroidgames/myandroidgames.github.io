@@ -16,11 +16,15 @@ Need define info areas (name,icon,source,link,summary)
 
 Already have a json contains needed info.
 
+### server structure:
+- index file give the list(package_name,version,updated?,app-json)
+- input should be an folder contains app, script will parse it and put it to right position,update icon/json,update index list.
+
 ### client app:
 - construct list app
 - using http request get json, parse info.
 - download app icon. 
-- download app/install
+- download app/install.
 
 
 

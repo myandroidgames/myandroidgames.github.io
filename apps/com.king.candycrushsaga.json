@@ -1,7 +1,8 @@
 {
-    "iconlink": "apps/com.king.candycrushsaga.icon.png", 
-    "version": "1.54.0.2", 
-    "downloadlink": "apps/com.king.candycrushsaga.apk", 
     "name": "Candy Crush Saga", 
-    "size": 51750441
+    "packagename": "com.king.candycrushsaga", 
+    "downloadlink": "apps/com.king.candycrushsaga.apk", 
+    "version": "1.54.0.2", 
+    "size": 51750441, 
+    "iconlink": "apps/com.king.candycrushsaga.icon.png"
 }
