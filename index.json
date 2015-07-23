@@ -1,6 +1,11 @@
 {
     "gamelist": [
         {
+            "packageName": "com.king.pyramidsolitairesaga", 
+            "version": "1.23.0", 
+            "appJson": "apps/ready/com.king.pyramidsolitairesaga/1.23.0/com.king.pyramidsolitairesaga.json"
+        }, 
+        {
             "packageName": "com.king.candycrushsaga", 
             "version": "1.56.0.3", 
             "appJson": "apps/ready/com.king.candycrushsaga/1.56.0.3/com.king.candycrushsaga.json"
