@@ -9,8 +9,6 @@ from os.path import splitext,isfile,getsize,exists
 
 SERVER_FILE_BASE_PATH = 'https://github.com/myandroidgames/myandroidgames.github.io/tree'
 
-ICON_PATH_IN_APK='res/drawable/icon.png'
-
 STR_CREATED = " created!"
 STR_EXIST = " already exist!"
 ICON_SUFFIX='.icon.png'
@@ -18,6 +16,7 @@ JSON_SUFFIX='.json'
 APK_SUFFIX = '.apk'
 VERSION_NAME_PREFIX='versionName='
 PACKAGE_NAME_PREFIX='name='
+ICON_PATH_PREFIX="icon='"
 
 JSON_KEY_NAME='name'
 JSON_KEY_PACKAGE='packagename'
@@ -36,16 +35,17 @@ iconlink,
 version,
 '''
 
-def genIcon(apkin,appOutPath,packageName):
+def genIcon(apkin,appOutPath,packageName,iconPath):
     zf=zipfile.ZipFile(apkin)
     iconOut = appOutPath+ '/' + packageName + ICON_SUFFIX
     if isfile(iconOut):
         print iconOut + STR_EXIST
         return
     try:
-        data = zf.read(ICON_PATH_IN_APK)
+        data = zf.read(iconPath)
     except KeyError:
-        print 'ERROR: not found %s in zip' % filename 
+        print 'ERROR: not found %s in zip' %iconPath
+        exit()
     target = open(iconOut,'w')
     target.write(data)
     target.close()
@@ -73,8 +73,24 @@ def getNameAndVersion(apkPath):
     name = name.split(':')[1]
     #remove start and end '
     name = name[1:len(name)-1]
-    print versionName,"|",name,"|",packageName
-    return [name,versionName,packageName]
+    #parse icon path
+    #we'd better not using split
+    #application: label='TwoDots' icon='res/drawable/app_icon.png' banner='res/drawable-xhdpi-v4/app_banner.png'
+    iconPath = strr[2]
+    #print iconPath
+    iconPos = iconPath.find(ICON_PATH_PREFIX)
+    #print iconPos,iconPath[iconPos:]
+    endPos = iconPath.find("'",iconPos+len(ICON_PATH_PREFIX))
+    #print endPos, iconPath[:endPos]
+    iconPath = iconPath[iconPos + len(ICON_PATH_PREFIX):endPos]
+    #print iconPath
+
+    print versionName,"|",name,"|",packageName,iconPath
+    #exit()
+    if not name or not versionName or not packageName or not iconPath:
+        print 'some info missed'
+        exit()
+    return [name,versionName,packageName,iconPath]
 def genJson(apkin, appOutPath, packageName, version, name):
     apkOut = appOutPath + '/' + packageName + APK_SUFFIX
     os.rename(apkin,apkOut)
@@ -117,15 +133,18 @@ def main(argv):
     #apkName = apkName[:-len('.apk')]
 
     #print apkName,'|',dirPath
-    if not isfile(apkPath):
-        print apkPath + ' not exist!'
-        return -1
-    path,ext=splitext(apkPath)
-    name,version,packageName = getNameAndVersion(apkPath)
-    appOutPath = outPath + '/' + packageName + '/' + version
-    createDirs(appOutPath)
-    genIcon(apkPath,appOutPath,packageName)
-    genJson(apkPath,appOutPath,packageName,version,name)
+    for apk in os.listdir(apkPath):
+        apkFullPath = apkPath +'/'+ apk
+        if not isfile(apkFullPath):
+            print apkFullPath + ' not exist!'
+            return -1
+        print apkFullPath
+        path,ext=splitext(apkFullPath)
+        name,version,packageName,iconPath = getNameAndVersion(apkFullPath)
+        appOutPath = outPath + '/' + packageName + '/' + version
+        createDirs(appOutPath)
+        genIcon(apkFullPath,appOutPath,packageName,iconPath)
+        genJson(apkFullPath,appOutPath,packageName,version,name)
 
 if __name__ == '__main__':
     main(argv)

@@ -4,6 +4,21 @@
             "packageName": "com.king.candycrushsaga", 
             "version": "1.56.0.3", 
             "appJson": "apps/ready/com.king.candycrushsaga/1.56.0.3/com.king.candycrushsaga.json"
+        }, 
+        {
+            "packageName": "com.zynga.mountaingoat", 
+            "version": "1.2.41", 
+            "appJson": "apps/ready/com.zynga.mountaingoat/1.2.41/com.zynga.mountaingoat.json"
+        }, 
+        {
+            "packageName": "com.weplaydots.twodotsandroid", 
+            "version": "1.10.1", 
+            "appJson": "apps/ready/com.weplaydots.twodotsandroid/1.10.1/com.weplaydots.twodotsandroid.json"
+        }, 
+        {
+            "packageName": "com.rovio.angrybirdsgo", 
+            "version": "1.7.0", 
+            "appJson": "apps/ready/com.rovio.angrybirdsgo/1.7.0/com.rovio.angrybirdsgo.json"
         }
     ]
 }
