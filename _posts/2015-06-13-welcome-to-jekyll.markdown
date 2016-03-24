@@ -6,9 +6,9 @@ categories: android games
 ---
 
 
-- [two-dots][1]
+- [two-dots][1] ![img1][2]
 
 
 
-[1]:http://goodgames.oss-cn-beijing.aliyuncs.com/apps/ready/com.weplaydots.twodotsandroid/1.10.1/com.weplaydots.twodotsandroid.apK
+[1]:http://goodgames.oss-cn-beijing.aliyuncs.com/apps/ready/com.weplaydots.twodotsandroid/1.10.1/com.weplaydots.twodotsandroid.apk
 [2]:http://goodgames.oss-cn-beijing.aliyuncs.com/apps/ready/com.weplaydots.twodotsandroid/1.10.1/com.weplaydots.twodotsandroid.icon.png
