@@ -6,7 +6,7 @@ categories: android games
 ---
 
 
-- [two-dots][1] ![img][2]
+- [two-dots][1]
 
 
 
